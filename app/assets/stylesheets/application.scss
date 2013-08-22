@@ -1,0 +1,143 @@
+/*
+ * This is the global stylesheet manifest file.  Files or plugins
+ * referenced from here or placed in the application/ directory will be
+ * included in all subsites.  This file is included by front.css and all
+ * subsites.
+ *
+ *= require_self
+ *= require_tree ./application
+*/
+
+$cern-blue: #3861AA;
+$cern-dark-gray: rgba(30, 30, 30, 0.95);
+$cern-gray: #686868;
+$cern-white: white;
+
+
+/* Use the CERN fonts */
+@font-face {font-family: 'PT Sans';                                         src: url('PTSansWeb/PTS55F_W.ttf'); }
+@font-face {font-family: 'PT Sans';  font-style: italic;                    src: url('PTSansWeb/PTS56F_W.ttf'); } 
+@font-face {font-family: 'PT Sans';  font-style: normal; font-weight: bold; src: url('PTSansWeb/PTS75F_W.ttf'); }
+@font-face {font-family: 'PT Sans';  font-style: italic; font-weight: bold; src: url('PTSansWeb/PTS76F_W.ttf'); } 
+@font-face {font-family: 'PT Sans Caption';                                 src: url('PTSansWeb/PTC55F_W.ttf'); }
+@font-face {font-family: 'PT Sans Caption';              font-weight: bold; src: url('PTSansWeb/PTC75F_W.ttf'); }
+@font-face {font-family: 'PT Sans Narrow';                                  src: url('PTSansWeb/PTN57F_W.ttf'); }
+@font-face {font-family: 'PT Sans Narrow';               font-weight: bold; src: url('PTSansWeb/PTN77F_W.ttf'); }
+
+@font-face {font-family: 'PT Serif';                                        src: url('PTSerifWeb/PTF55F_W.ttf');}
+@font-face {font-family: 'PT Serif'; font-style: italic;                    src: url('PTSerifWeb/PTF56F_W.ttf');} 
+@font-face {font-family: 'PT Serif'; font-style: normal; font-weight: bold; src: url('PTSerifWeb/PTF75F_W.ttf');}
+@font-face {font-family: 'PT Serif'; font-style: italic; font-weight: bold; src: url('PTSerifWeb/PTF76F_W.ttf');} 
+@font-face {font-family: 'PT Serif Caption';                                src: url('PTSerifWeb/PTZ55F_W.ttf');}
+@font-face {font-family: 'PT Serif Caption'; font-style: italic;            src: url('PTSerifWeb/PTZ56F_W.ttf');}
+
+@font-face {font-family: 'PT Mono';                         src: url('PTMonoWeb/PTM55F_W.ttf');}
+@font-face {font-family: 'PT Mono Bold'; font-weight: bold; src: url('PTMonoWeb/PTM75F_W.ttf');}
+
+
+$cern-fonts: 'PT Sans', Tahoma, Arial, sans-serif;
+$cern-content-fonts: 'PT Serif', 'Georgia', Times, serif;
+
+html, body {
+    background:$cern-dark-gray;
+    font-family:$cern-fonts;
+}
+
+
+body div.page-header {
+    background: $cern-white;
+}
+
+body h1 {
+    font-family:$cern-fonts;
+    font-weight:bold;
+    color:$cern-blue;
+}
+
+div.page-header h1.app-name {
+    text-indent: -10000px;
+    background: url('CERNatschool_logo.png') no-repeat;
+    padding:0; margin:0;
+/*    padding: 32px;
+    margin: 32px;
+    */
+    font-family:$cern-fonts;
+    height: 164px;
+}
+
+div.page-header h1.app-name a {
+    color:$cern-blue;
+    font-weight:bold;
+}
+
+div.section.content {
+    margin-top:-1px;
+    background:$cern-white;
+    font-family:$cern-content-fonts;
+    position:relative;
+    z-index:10000;
+}
+
+div.page-header .navigation.main-nav {
+    padding:-5px;
+    background: url("20-FFFFFF-686868.png") repeat-x scroll #FFFFFF;
+    background-position: center bottom;
+}
+
+div.page-header .navigation.main-nav li a {
+    border-left: 1px solid $cern-gray;
+    border-right: 1px solid $cern-gray;
+    border-top: 1px solid $cern-gray;
+    background:$cern-blue;
+    color: $cern-white;
+    font-family: Tahoma, Arial, sans-serif;
+    position:relative;
+    z-index:10;
+}
+
+div.page-header .navigation.main-nav li.current a {
+    border-left: 1px solid $cern-gray;
+    border-right: 1px solid $cern-gray;
+    border-top: 1px solid $cern-gray;
+    border-bottom:0;
+    background:$cern-white;
+    color: $cern-gray;
+    font-family: Tahoma, Arial, sans-serif;
+}
+
+body.front-page .welcome-message {
+    border:0;
+    background:$cern-white;
+}
+
+input.button {
+    background:$cern-blue;
+}
+
+div.flash.notice {
+    background:$cern-blue;
+}
+
+div.page-footer {
+    text-align:center;
+}
+
+div.content-header h2 {
+    font-family:$cern-fonts;
+    color:$cern-blue;
+    font-weight:bold;
+}
+
+div.table-plus table tbody tr td {
+    vertical-align:middle;
+    text-align:center;
+}
+
+div.table-plus table thead tr th {
+    text-align:center;
+}
+
+div.table-plus table tbody tr td.photo-view {
+    width: 110px;
+    height: 110px;
+}

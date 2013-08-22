@@ -1,0 +1,29 @@
+@font-face {font-family: 'PT Serif'; 
+	src: url('https://framework.web.cern.ch/framework/2.0/fonts/PTSansWeb/ptf55f_w.eot'); 
+	src: local('PT Serif'), url('ptf55f_w.woff') format('woff'),url('ptf55f_w.ttf') format('truetype'), url('ptf55f_w.svg#PTSerif-Regular') format('svg');}
+
+@font-face {font-family: 'PT Serif'; 
+	font-style: italic;
+	src: url('https://framework.web.cern.ch/framework/2.0/fonts/PTSansWeb/ptf56f_w.eot'); 
+	src: local('PT Serif Italic'), url('ptf56f_w.woff') format('woff'),url('ptf56f_w.ttf') format('truetype'), url('ptf56f_w.svg#PTSerif-Italic') format('svg');}
+
+@font-face {font-family: 'PT Serif';
+	src: url('https://framework.web.cern.ch/framework/2.0/fonts/PTSansWeb/ptf75f_w.eot');
+	font-style: normal;
+	font-weight: bold; 
+	src: local('PT Serif Bold'), url('ptf75f_w.woff') format('woff'),url('ptf75f_w.ttf') format('truetype'), url('ptf75f_w.svg#PTSerif-Bold') format('svg');}
+
+@font-face {font-family: 'PT Serif';
+	font-style: italic;
+	font-weight: bold; 
+	src: url('https://framework.web.cern.ch/framework/2.0/fonts/PTSansWeb/ptf76f_w.eot'); 
+	src: local('PT Serif Bold Italic'), url('ptf76f_w.woff') format('woff'),url('ptf76f_w.ttf') format('truetype'), url('ptf76f_w.svg#PTSerif-BoldItalic') format('svg');}
+
+@font-face {font-family: 'PT Serif Caption'; 
+	src: url('https://framework.web.cern.ch/framework/2.0/fonts/PTSansWeb/ptz55f_w.eot');
+	src: local('PT Serif Caption'), url('ptz55f_w.woff') format('woff'),url('ptz55f_w.ttf') format('truetype'), url('ptz55f_w.svg#PTSerif-Caption') format('svg');}
+
+@font-face {font-family: 'PT Serif Caption';
+	font-style: italic; 
+	src: url('https://framework.web.cern.ch/framework/2.0/fonts/PTSansWeb/ptz56f_w.eot');
+	src: local('PT Serif Caption Italic'), url('ptz56f_w.woff') format('woff'),url('ptz56f_w.ttf') format('truetype'), url('ptz56f_w.svg#PTSerif-CaptionItalic') format('svg');}

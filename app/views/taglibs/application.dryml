@@ -1,0 +1,62 @@
+<!-- this file is included by front_site.dryml, admin_site.dryml et al, so
+you can place common code in this file. -->
+
+# Add this to remove the live search
+<extend tag="page">
+  <old-page merge without-live-search>
+    <footer: param><footer-nav/></footer:>
+  </old-page>
+</extend>
+
+# Footer
+<def tag="footer-nav">
+  APPNAME - copyright CERN@school 2013
+</def>
+
+<def tag="field-list">
+  <!-- <feckless-fieldset class="horizontal" merge/> -->
+  <field-list-v1 merge/>
+</def>
+
+# Extend the form for users
+<extend tag="form" for="User">
+  <old-form merge multipart>
+    <field-list: fields="name, email_address, photo"/>
+  </old-form>
+</extend>
+
+# Alter the user show page
+<def tag="show-page" for="User">
+  <page merge title="#{ht 'user.show.title', :default=>['User'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page user" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="user.show.heading" name="#{name(:no_wrapper => true)}">
+          User <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="administrator" param/>
+
+      <a action="edit" if="&can_edit?" param="edit-link">
+        <ht key="user.actions.edit" name="#{name(:no_wrapper => true)}">
+          Edit User
+        </ht>
+      </a>
+    </content-header:>
+
+    <content-body: param>
+      <image src="#{this.photo.url}"/>
+      <if test="&current_user.administrator?">
+        <field-list fields="email_address, state" param/>
+      </if>
+      <else>
+        <field-list fields="state" param/>
+      </else>
+    </content-body:>
+
+  </page>
+</def>
+

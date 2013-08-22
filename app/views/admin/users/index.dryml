@@ -1,0 +1,17 @@
+<index-page without-new-form>
+  <after-count:>
+    <br/>
+    <a with="&User" action="invite">
+      <t key="hobo.admin.invite_new_user">Invite a new user</t>
+    </a>
+  </after-count:>
+  <collection: replace>
+  <div class="table-plus"><table fields="photo,this,state">
+    <empty-message:>No users match your criteria</empty-message:>
+    <photo-heading:>Image</photo-heading:>
+    <photo-view:><image src="#{this.url(:thumb)}"/></photo-view:>
+    <this-heading:></this-heading:>
+    <controls:/>
+  </table></div>
+  </collection:>
+</index-page>
