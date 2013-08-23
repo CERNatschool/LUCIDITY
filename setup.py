@@ -1,7 +1,12 @@
 #!/usr/bin/env python
 
 """
-Setup script for Hobo web app deployment.
+
+Setup script for CERN@school Hobo web app deployment.
+
+@author : Tom Whyntie (t.whyntie@qmul.ac.uk)
+@date   : August 2013
+
 """
 
 import os, inspect
@@ -27,13 +32,13 @@ def replace_text(filename, stringtomatch, stringtoreplace):
         print line.replace(stringtomatch, stringtoreplace),
 
 #
-#
+# The main script.
 #
 if __name__ == '__main__':
 
     appname  = "BASENAME"
     dbsuffix = "DBSUFFIX"
-    # Parse arguments
+    # Parse arguments.
     try:
         opts, args = getopt.getopt(sys.argv[1:], "hn:d:", \
                                    ["help","app-name=","db-suffix="])
@@ -41,6 +46,7 @@ if __name__ == '__main__':
         print("setup.py -n <app name> -d <database suffix>")
         sys.exit(2)
 
+    # Process the options.
     for opt, arg in opts:
         if opt in ("-h", "--help"):
             print("Sets up the Hobo web app files.")
@@ -56,8 +62,7 @@ if __name__ == '__main__':
     print(" * Database suffix is '%s'"  % (dbsuffix))
 
     # Change the database names
-    for line in fileinput.input("config/database.yml", inplace = 1):
-        print line.replace("DBSUFFIX", dbsuffix),
+    replace_text("config/database.yml", "DBSUFFIX", dbsuffix)
 
     # Replace the CERNatschoolHoboappbase in the config files...
     replace_text("config/routes.rb",      "CERNatschoolHoboappbase", appname)
@@ -72,36 +77,40 @@ if __name__ == '__main__':
     replace_text("Rakefile",  "CERNatschoolHoboappbase", appname)
     replace_text("config.ru", "CERNatschoolHoboappbase", appname)
 
-    # Replace the app name in the .dryml files?
-    # When to do this? After the wizard has run? Presumably...
-    # Yes, but of course the user will be checking this out
-    # from the (forked) repo anyway and so won't be running the
-    # wizard.
-    for line in fileinput.input("app/views/taglibs/application.dryml", inplace=1):
-        print line.replace("APPNAME", appname),
+    # Replace the app name in the .dryml files
+    replace_text("app/views/taglibs/application.dryml", "APPNAME", appname)
+    replace_text("app/views/taglibs/front_site.dryml",  "APPNAME", appname)
 
-    for line in fileinput.input("app/views/taglibs/front_site.dryml", inplace=1):
-        print line.replace("APPNAME", appname),
 
+    # The configuration files
+    #-------------------------
     email_yml_file     = open(os.path.join(cpth, 'config/email.yml'),     'w')
     amazon_yml_file    = open(os.path.join(cpth, 'config/amazon.yml'),    'w')
     amazon_s3_yml_file = open(os.path.join(cpth, 'config/amazon_s3.yml'), 'w')
-
+    #
     # The email configuration file.
     email_yml_file.write('production:' + os.linesep)
     write_email_cfg(email_yml_file)
     email_yml_file.write(os.linesep)
     email_yml_file.write('development:' + os.linesep)
     write_email_cfg(email_yml_file)
-
+    #
     # The AWS configuration file (for production)
     amazon_yml_file.write('access_key_id:'     + os.linesep)
     amazon_yml_file.write('secret_access_key:' + os.linesep)
-
+    #
     # The AWS S3 configuration file (for production)
     amazon_s3_yml_file.write('production:' + os.linesep)
     amazon_s3_yml_file.write('  bucket:'   + os.linesep)
-
+    #
     email_yml_file.close()
     amazon_yml_file.close()
     amazon_s3_yml_file.close()
+
+    # The README.md and NOTICE files
+    readme = open("README.md", "w")
+    readme.write("Put the README.md for '%s' here." % (appname))
+    readme.close()
+    #
+    replace_text("NOTICE", "CERNatschoolHoboAppBase", appname)
+
