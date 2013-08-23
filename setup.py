@@ -60,7 +60,6 @@ if __name__ == '__main__':
         print line.replace("DBSUFFIX", dbsuffix),
 
     # Replace the CERNatschoolHoboappbase in the config files...
-    replace_text("config/hobo_routes.rb", "CERNatschoolHoboappbase", appname)
     replace_text("config/routes.rb",      "CERNatschoolHoboappbase", appname)
     replace_text("config/application.rb", "CERNatschoolHoboappbase", appname)
     replace_text("config/initializers/session_store.rb", "CERNatschoolHoboappbase",  appname)
