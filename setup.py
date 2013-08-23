@@ -22,6 +22,13 @@ def write_email_cfg(f):
     f.write('  authentication: ""'            + os.linesep)
     f.write('  enable_starttls_auto: '        + os.linesep)
 
+def replace_text(filename, stringtomatch, stringtoreplace):
+    for line in fileinput.input(filename, inplace = 1):
+        print line.replace(stringtomatch, stringtoreplace),
+
+#
+#
+#
 if __name__ == '__main__':
 
     appname  = "BASENAME"
@@ -52,13 +59,30 @@ if __name__ == '__main__':
     for line in fileinput.input("config/database.yml", inplace = 1):
         print line.replace("DBSUFFIX", dbsuffix),
 
-    # Replace the app name in the .dryml files.
+    # Replace the CERNatschoolHoboappbase in the config files...
+    replace_text("config/hobo_routes.rb", "CERNatschoolHoboappbase", appname)
+    replace_text("config/routes.rb",      "CERNatschoolHoboappbase", appname)
+    replace_text("config/application.rb", "CERNatschoolHoboappbase", appname)
+    replace_text("config/initializers/session_store.rb", "CERNatschoolHoboappbase",  appname)
+    replace_text("config/initializers/session_store.rb", "CERNatschool-HoboAppBase", appname)
+    replace_text("config/initializers/secret_token.rb",  "CERNatschoolHoboappbase",  appname)
+    replace_text("config/environment.rb", "CERNatschoolHoboappbase", appname)
+    replace_text("config/environments/production.rb",  "CERNatschoolHoboappbase", appname)
+    replace_text("config/environments/development.rb", "CERNatschoolHoboappbase", appname)
+    replace_text("config/environments/test.rb",        "CERNatschoolHoboappbase", appname)
+    replace_text("Rakefile",  "CERNatschoolHoboappbase", appname)
+    replace_text("config.ru", "CERNatschoolHoboappbase", appname)
+
+    # Replace the app name in the .dryml files?
+    # When to do this? After the wizard has run? Presumably...
+    # Yes, but of course the user will be checking this out
+    # from the (forked) repo anyway and so won't be running the
+    # wizard.
     for line in fileinput.input("app/views/taglibs/application.dryml", inplace=1):
         print line.replace("APPNAME", appname),
-    #
+
     for line in fileinput.input("app/views/taglibs/front_site.dryml", inplace=1):
         print line.replace("APPNAME", appname),
-
 
     email_yml_file     = open(os.path.join(cpth, 'config/email.yml'),     'w')
     amazon_yml_file    = open(os.path.join(cpth, 'config/amazon.yml'),    'w')
