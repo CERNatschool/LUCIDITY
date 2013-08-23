@@ -155,6 +155,13 @@ The `.gitignore` file is configured to ignore this file, so
 don't worry (too much) about accidentally committing this information
 to GitHub.
 
+Finally, don't forget to update the `README.md` file to provide
+some basic instructions for users and developers of your app.
+
+    vim README.md
+
+And that's it! You should be ready to run the app.
+
 ### Running the local development version of your app
 
 If everything has worked so far, it should be as simple as:
