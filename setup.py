@@ -52,11 +52,13 @@ if __name__ == '__main__':
     for line in fileinput.input("config/database.yml", inplace = 1):
         print line.replace("DBSUFFIX", dbsuffix),
 
-    # Replace the app name in the .dryml files?
-    # When to do this? After the wizard has run? Presumably...
-    # Yes, but of course the user will be checking this out
-    # from the (forked) repo anyway and so won't be running the
-    # wizard.
+    # Replace the app name in the .dryml files.
+    for line in fileinput.input("app/views/taglibs/application.dryml", inplace=1):
+        print line.replace("APPNAME", appname),
+    #
+    for line in fileinput.input("app/views/taglibs/front_site.dryml", inplace=1):
+        print line.replace("APPNAME", appname),
+
 
     email_yml_file     = open(os.path.join(cpth, 'config/email.yml'),     'w')
     amazon_yml_file    = open(os.path.join(cpth, 'config/amazon.yml'),    'w')
