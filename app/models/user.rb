@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   end
   attr_accessible :name, :email_address, :password, :password_confirmation, :current_password
 
-  has_attached_file :photo, :styles => { :medium=>"300x300>", :thumb=>"100x100>" }
+  has_attached_file :photo, :styles => { :medium=>"256x256>", :thumb=>"64x64>" }
   attr_accessible   :photo
 
   # This gives admin rights and an :active state to the first sign-up.
