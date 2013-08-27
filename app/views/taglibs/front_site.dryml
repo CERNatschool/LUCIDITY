@@ -17,3 +17,14 @@
 <include src="application"/>
 
 <def tag="app-name">APPNAME</def>
+
+# The navigation bar
+<def tag="main-nav">
+  <navigation class="main-nav" merge-attrs param="default">
+    <nav-item href="#{base_url}/">Home</nav-item>
+    <if test="&current_user.administrator?">
+      <nav-item href="#{base_url}/admin/users">Users</nav-item>
+    </if>
+  </navigation>
+</def>
+
