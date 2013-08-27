@@ -25,3 +25,4 @@ config/amazon_s3.yml
 
 # Ignore (local) storage files
 public/system/**/*
+public/assets/

@@ -174,3 +174,86 @@ page. You should complete this as usual. Note that if you've entered
 correct details into `config/email.yml`, you should be able to
 invite new users (for test purposes only, of course - anyone you invite
 would have to have access to your local machine!).
+
+
+Deploying your app with Phusion Passenger and Apache
+----------------------------------------------------
+
+### Requirements
+
+You'll need a system running:
+
+* An Apache 2 server
+* Phusion Passenger
+
+Instructions for installing and configuring these won't be provided
+here (for now), but when/if you install these on your system you'll
+have to bear in mind that setting up Passenger for multiple gemsets
+is tricky. Therefore, for now, we'll assume that you're running
+with one "global" gemset for the apps deployed on your server.
+
+### Deployment
+
+Follow the instructions above for installing your app locally
+to your server. However, you should clone the new repo to
+a directory with a different name to the final URL directory:
+
+    git clone https://github.com/CERNatschool/APPNAME.git APPNAME_rX
+    cd APPNAME_rX
+
+where `X` is some revision number. Then create a symlink to the
+"public" directory of your app from the final URL directory:
+
+    ln -s /var/www/APPNAME_rX/public /var/www/APPNAME
+
+Then create the database user and database for the production
+version of your app:
+
+    mysql -u aws_producer -p # enter password
+
+```mysql
+CREATE DATABASE aws_production_db_DBSUFFIX;
+QUIT;
+```
+
+and migrate it:
+
+    RAILS_ENV=production rake db:migrate
+
+Precompile the app's assets:
+
+    rake assets:precompile
+
+Now add the app's URL info to the apache2 configuration file:
+
+```
+# /etc/apache2/sites-available/default
+    <Directory /var/www/APPNAME_rX/public/system>
+        AllowOverride all
+        Options -Multiviews
+    </Directory>
+
+    RackBaseURI /APPNAME
+    <Directory /var/www/APPNAME>
+        Options -Multiviews
+    </Directory>
+```
+
+Populate the following (un-Gitted) configuration files with your
+AWS information:
+
+* config/amazon.yml
+* config/amazon_s3.yml
+* config/email.yml
+
+And then finally,
+reload the Apache site information and restart the server:
+
+    sudo a2dissite default
+    sudo service apache2 reload
+    sudo a2ensite default
+    sudo service apache2 reload
+    sudo service apache2 restart
+
+If all has gone to plan, your app should run from
+`http://HOSTNAME/APPNAME`. Good luck!
