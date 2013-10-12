@@ -9,7 +9,7 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-module CERNatschoolHoboappbase
+module LUCIDITY
   class Application < Rails::Application
     # Hobo: the admin subsite loads admin.css & admin.js
     config.assets.precompile += %w(admin.css admin.js)

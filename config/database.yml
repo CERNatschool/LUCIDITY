@@ -1,7 +1,7 @@
 development:
   adapter: mysql2
   encoding: utf8
-  database: local_dev_db_DBSUFFIX
+  database: local_dev_db_lucidity
   username: local_dev
   password:
   host: localhost
@@ -12,7 +12,7 @@ development:
 test:
   adapter: mysql2
   encoding: utf8
-  database: local_test_db_DBSUFFIX
+  database: local_test_db_lucidity
   username: local_dev
   password:
   host: localhost
@@ -20,7 +20,7 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  database: aws_production_db_DBSUFFIX
+  database: aws_production_db_lucidity
   username: aws_producer
   password:
   host: localhost

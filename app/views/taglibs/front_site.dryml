@@ -16,7 +16,7 @@
 
 <include src="application"/>
 
-<def tag="app-name">APPNAME</def>
+<def tag="app-name">LUCIDITY</def>
 
 # The navigation bar
 <def tag="main-nav">

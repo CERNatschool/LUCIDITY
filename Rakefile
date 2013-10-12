@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-CERNatschoolHoboappbase::Application.load_tasks
+LUCIDITY::Application.load_tasks

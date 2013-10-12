@@ -10,7 +10,7 @@ you can place common code in this file. -->
 
 # Footer
 <def tag="footer-nav">
-  APPNAME - copyright CERN@school 2013
+  LUCIDITY - copyright CERN@school 2013
 </def>
 
 <def tag="field-list">
