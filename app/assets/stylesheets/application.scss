@@ -56,7 +56,7 @@ body h1 {
 
 div.page-header h1.app-name {
     text-indent: -10000px;
-    background: url('CERNatschool_logo.png') no-repeat;
+    background: url('LUCIDITY_logo.png') no-repeat;
     padding:0; margin:0;
 /*    padding: 32px;
     margin: 32px;
@@ -123,6 +123,9 @@ div.page-footer {
 }
 
 div.content-header h2 {
+    border-bottom: 1px dotted #888888;
+    margin-bottom: 20px;
+    padding: 15px 0;
     font-family:$cern-fonts;
     color:$cern-blue;
     font-weight:bold;
@@ -133,6 +136,14 @@ div.table-plus table tbody tr td {
     text-align:center;
 }
 
+div.table-plus table tbody tr td.this-view,
+div.table-plus table tbody tr td.task-view,
+div.table-plus table tbody tr td.task-project-view,
+div.table-plus table tbody tr td.title-view {
+    vertical-align:middle;
+    text-align:left;
+}
+
 div.table-plus table thead tr th {
     text-align:center;
 }
@@ -140,4 +151,46 @@ div.table-plus table thead tr th {
 div.table-plus table tbody tr td.photo-view {
     width: 72px;
     height: 72px;
+}
+
+.details-section h3, h3.collection-heading,
+h3.assignedsubtasks-heading {
+    border-bottom: 1px dotted #888888;
+    margin-bottom: 20px;
+    padding: 15px 0;
+    font-family:$cern-fonts;
+    color:$cern-blue;
+    font-weight:bold;
+}
+
+div.description p, div.content-body p {
+    padding: 5px 0 5px 0;
+}
+
+div.content-body, div.content-header {
+    padding: 0
+}
+
+.show-page div.content-header {
+    border-bottom: 0
+}
+
+div.table-plus div.header{
+    /* border-top: 1px dotted #888888; */
+    padding: 10px 0 0 0;
+}
+
+div.table-plus div.header div.filter {
+    padding: 10px 0 0 0;
+    float: left;
+}
+
+div.table-plus div.header div.search {
+    padding: 0 0 5px 0;
+    float: right;
+}
+
+div.table-plus div.header div.filter form,
+div.table-plus div.header div.filter form div {
+    display: inline;
 }

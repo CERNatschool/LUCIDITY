@@ -6,6 +6,8 @@ gem 'mysql2', '~> 0.3.13'
 
 gem 'thin', '~> 1.5.1'
 
+gem 'rubyzip', '~> 0.9.9'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -21,6 +23,8 @@ end
 group :production do
   gem 'sass-rails', '~> 3.2.3'
 end
+
+gem 'bluecloth', '~> 2.2.0'
 
 gem 'jquery-rails', '~> 2.0'
 

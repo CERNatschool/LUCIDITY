@@ -25,6 +25,7 @@
     <if test="&current_user.administrator?">
       <nav-item href="#{base_url}/admin/users">Users</nav-item>
     </if>
+    <nav-item with="&FluxSpectra"><ht key="flux_spectra.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
 

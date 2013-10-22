@@ -8,18 +8,45 @@ en:
 #    created_at: Created at
 #    updated_at: Updated at
 #
-#  activerecord:
-#    models:
-#      user:
-#        one: User
-#        other: Users
-#    attributes:
-#      user:
-#        name: Name
-#        password: Password
-#        current_password: Current Password
-#        password_confirmation: Password Confirmation
-#        email_address: Email Address
-#    attribute_help:
-#      user:
-#        email_address: We will never share your address with third parties
+  activerecord:
+    models:
+      user:
+        one: User
+        other: Users
+      flux_spectra:
+        one: Flux Spectra File
+        other: Flux Spectra Files
+      source_card:
+        one: Source Card
+        other: Source Cards
+    attributes:
+      user:
+        name: Name
+        password: Password
+        current_password: Current Password
+        password_confirmation: Password Confirmation
+        email_address: Email Address
+      flux_spectra:
+        name: File name
+        filetext: SPENVIS flux spectra file text
+        projectname: SPENVIS project name
+        n_events: Events per energy bin
+        source_cards_count: No. of source cards
+      source_card:
+        cardid: Source card ID
+        particle_type: Particle type
+        n_events: Number of events
+        e_min: E min. [MeV]
+        e_max: E max. [MeV]
+        flux_integral: Integral flux [/cm^2/s]
+        flux_differential: Differential flux [/cm^2/s/MeV]
+        notes: Notes
+        owner: Parent flux spectra file
+        cardfile: Source card file
+    attribute_help:
+      user:
+        email_address: We will never share your address with third parties. Please use a school or academic address where possible.
+      flux_spectra:
+        name: Choose a unique name for the flux spectra file.
+        filetext: Paste the output from the SPENVIS Trapped radiation Results -- averaged proton and electron fluxes -- here.
+        notes: Add any notes about the SPENVIS file here.

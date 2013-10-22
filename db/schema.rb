@@ -11,7 +11,45 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130822124008) do
+ActiveRecord::Schema.define(:version => 20131014092919) do
+
+  create_table "flux_spectras", :force => true do |t|
+    t.string   "name"
+    t.text     "filetext"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "projectname"
+    t.integer  "source_cards_count",           :default => 0,     :null => false
+    t.text     "notes"
+    t.integer  "n_events",                     :default => 10000, :null => false
+    t.string   "sourcecardsfile_file_name"
+    t.string   "sourcecardsfile_content_type"
+    t.integer  "sourcecardsfile_file_size"
+    t.datetime "sourcecardsfile_updated_at"
+  end
+
+  add_index "flux_spectras", ["name"], :name => "index_flux_spectras_on_name", :unique => true
+
+  create_table "source_cards", :force => true do |t|
+    t.integer  "n_events"
+    t.string   "particle_type"
+    t.decimal  "e_min",                 :precision => 30, :scale => 15
+    t.decimal  "e_max",                 :precision => 30, :scale => 15
+    t.decimal  "flux_integral",         :precision => 30, :scale => 15
+    t.decimal  "flux_differential",     :precision => 30, :scale => 15
+    t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "flux_spectra_id"
+    t.string   "cardid"
+    t.string   "cardfile_file_name"
+    t.string   "cardfile_content_type"
+    t.integer  "cardfile_file_size"
+    t.datetime "cardfile_updated_at"
+  end
+
+  add_index "source_cards", ["cardid"], :name => "index_source_cards_on_cardid", :unique => true
+  add_index "source_cards", ["flux_spectra_id"], :name => "index_source_cards_on_flux_spectra_id"
 
   create_table "users", :force => true do |t|
     t.string   "crypted_password",          :limit => 40

@@ -60,3 +60,138 @@ you can place common code in this file. -->
   </page>
 </def>
 
+#
+# FLUX SPECTRA
+#
+#
+# Alter the form for Flux Spectra
+<extend tag="form" for="FluxSpectra">
+  <old-form merge multipart>
+    <field-list: fields="name, filetext, n_events, notes"/>
+  </old-form>
+</extend>
+
+# Index page for flux spectra
+<def tag="index-page" for="FluxSpectra">
+  <page merge title="#{ht 'flux_spectra.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page flux-spectra" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="flux_spectra.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+    </content-header:>
+
+    <content-body: param>
+      <p param="count" if>
+        <ht key="flux_spectra.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+      <ul>
+        <li><a action="new" to="&model" param="new-link">Create a new Flux Spectra file</a>.</li>
+      </ul>
+      <table-plus with="&@fluxspectrafiles" fields="this, projectname, source_cards_count">
+        <empty-message:>No files match your criteria</empty-message:>
+        <controls:/>
+      </table-plus>
+
+    </content-body:>
+  </page>
+</def>
+
+
+# Show page for Flux Spectra file
+<def tag="show-page" for="FluxSpectra">
+  <page merge title="#{ht 'flux_spectra.show.title', :default=>['Flux spectra'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page flux-spectra" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="flux_spectra.show.heading" name="#{name(:no_wrapper => true)}">
+          Flux spectra <name/>
+        </ht>
+      </h2>
+    </content-header:>
+
+    <record-flags: fields="" param/>
+
+    <content-body: param>
+      <section param="details-section">
+        <a action="edit" if="&can_edit?" param="edit-link">Edit this flux spectra file</a>.
+        <br />
+        <if test="&this.sourcecardsfile">
+          <%= link_to "Download source cards", FluxSpectra.find(params[:id]).sourcecardsfileurl(:original, false) %>
+        </if>
+        <br />
+        <br />
+        <field-list fields="projectname, n_events, notes" param/>
+        <br />
+        <h3>The original SPENVIS file</h3>
+        <%= button_to "Process file", :action => "process_files", :id => params[:id] %>
+        <br />
+        <br />
+        <%= text_area_tag 'filetext', this.filetext, :cols => 80, :rows => 15, :readonly => true, :style => "resize:none" %>
+        <br />
+        <h3 param="details-heading"><ht key="flux_spectra.show.title">Flux Spectra</ht> source cards</h3>
+        <table-plus with="&@sourcecards" fields="this, particle_type, e_min, e_max, flux_integral, flux_differential, cardfile">
+          <prepend-header:>
+            <div class="filter">
+              Particle type: <filter-menu param-name="particle_type" options="&SourceCard::Particles.values" no-filter="All"/>
+            </div>
+          </prepend-header:>
+          <particle-type-heading:>Particle type</particle-type-heading:>
+          <flux-integral-view:><%= "%10.3E" % this %></flux-integral-view:>
+          <flux-differential-view:><%= "%10.3E" % this %></flux-differential-view:>
+          <cardfile-view:><%= link_to ".in", this.url(:original, false) %></cardfile-view:>
+          <empty-message:>No source cards match your criteria</empty-message:>
+          <controls:/>
+        </table-plus>
+      </section>
+    </content-body:>
+
+  </page>
+</def>
+
+#
+# SOURCE CARDS
+#
+# Alter the form for Source Cards
+<extend tag="form" for="SourceCard">
+  <old-form merge multipart>
+    <field-list: fields="n_events, notes"/>
+  </old-form>
+</extend>
+
+# Show page for Source Cards
+<def tag="show-page" for="SourceCard">
+  <page merge title="#{ht 'source_card.show.title', :default=>['Source card'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page source-card" param/>
+
+    <content-header: param>
+      <a:flux_spectra param="parent-link">&laquo; <ht key="source_card.actions.back_to_parent" parent="Flux spectra" name="&this">Back to <name/></ht></a:flux_spectra>
+      <h2 param="heading">
+        <ht key="source_card.show.heading" name="#{name(:no_wrapper => true)}">
+          Source card <name/>
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <ul>
+        <li><a action="edit" if="&can_edit?" param="edit-link">Edit this source card</a>;</li>
+        <li><%= link_to "Download the GEANT4 input card", SourceCard.find(params[:id]).cardfile.url(:original, false) %>.</li>
+      </ul>
+      <br/>
+      <view:notes param="notes" />
+      <br/>
+      <field-list fields="n_events, particle_type, e_min, e_max, flux_integral, flux_differential" param/>
+    </content-body:>
+
+  </page>
+</def>
