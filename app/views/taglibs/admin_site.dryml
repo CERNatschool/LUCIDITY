@@ -26,3 +26,9 @@
     </header:>
   </card>
 </def>
+
+<def tag="form" for="FluxSpectra">
+</def>
+
+<def tag="form" for="SourceCard">
+</def>
