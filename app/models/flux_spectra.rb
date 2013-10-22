@@ -42,7 +42,7 @@ class FluxSpectra < ActiveRecord::Base
 
   def sourcecardsfileurl(whichfile, mybool)
     return sourcecardsfile.url(whichfile, mybool) if Rails.env == "development"
-    badurl = URI(sourcecardsthefile.url(whichfile, mybool))
+    badurl = URI(sourcecardsfile.url(whichfile, mybool))
     return 'http://www.cern-at-school.org/LUCIDITY_r1/public' + badurl.path.to_s
   end
 
